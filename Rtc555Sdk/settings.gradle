@@ -1,0 +1,2 @@
+include ':app', ':Rtc555Sdk', ':@react-native-community_async-storage', ':@react-native-community_netinfo', ':react-native-cookies', ':react-native-device-info', ':react-native-incall-manager', ':react-native-vector-icons', ':react-native-webrtc', ':react-native-webview', ':react-native-0.59.9', ':ReactAndroid-debug', ':android-jsc-intl-r245459'
+rootProject.name='example'

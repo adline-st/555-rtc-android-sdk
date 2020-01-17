@@ -1,0 +1,62 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 29
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        minSdkVersion 23
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar','*.aar'])
+
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    implementation project(path: ':react-native-cookies')
+    implementation project(path: ':@react-native-community_netinfo')
+    implementation project(path: ':react-native-vector-icons')
+    implementation project(path: ':react-native-webrtc')
+    implementation project(path: ':react-native-device-info')
+    implementation project(path: ':react-native-webview')
+    implementation project(path: ':@react-native-community_async-storage')
+    implementation project(path: ':react-native-incall-manager')
+
+
+    implementation 'com.facebook.soloader:soloader:0.6.0'
+    implementation 'com.facebook.infer.annotation:infer-annotation:0.11.2'
+    implementation 'com.facebook.fresco:fresco:2.0.0'
+    implementation 'com.facebook.fresco:imagepipeline-okhttp3:2.0.0'
+    implementation 'javax.inject:javax.inject:1'
+    implementation 'com.squareup.okhttp3:okhttp:3.12.1'
+    implementation 'com.squareup.okhttp3:okhttp-urlconnection:3.12.1'
+    implementation project(path: ':android-jsc-intl-r245459')
+    implementation project(path: ':react-native-0.59.9')
+
+}
+
+task copyDownloadableDepsToLibs(type: Copy) {
+    from configurations.compile
+    into 'libs'
+}

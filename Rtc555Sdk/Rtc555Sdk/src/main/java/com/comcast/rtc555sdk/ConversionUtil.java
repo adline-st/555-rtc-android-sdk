@@ -1,4 +1,4 @@
-package com.rtcreactsdk;
+package com.comcast.rtc555sdk;
 
 import androidx.annotation.Nullable;
 

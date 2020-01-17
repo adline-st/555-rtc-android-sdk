@@ -1,5 +1,8 @@
 apply plugin: 'com.android.library'
 
+
+version = "0.0.1"
+
 android {
     compileSdkVersion 29
 
@@ -12,7 +15,7 @@ android {
         minSdkVersion 23
         targetSdkVersion 29
         versionCode 1
-        versionName "1.0"
+        versionName version
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
@@ -25,6 +28,26 @@ android {
         }
     }
 
+    libraryVariants.all { variant ->
+        android.defaultConfig.versionName = variant.mergedFlavor.versionName;
+        renameBinary(variant, defaultConfig)
+    }
+
+}
+
+def renameBinary(variant, defaultConfig) {
+    variant.outputs.each { output ->
+
+        def moduleName = "Rtc555Sdk"
+
+        def alignedFile = output.outputFile
+
+        if (alignedFile != null && alignedFile.name.endsWith('.aar')){
+            def fileName = moduleName + "-v" + defaultConfig.versionName + "-" +variant.buildType.name + ".aar" //"-" + getDate()
+            output.outputFileName = fileName
+        }
+
+    }
 }
 
 dependencies {

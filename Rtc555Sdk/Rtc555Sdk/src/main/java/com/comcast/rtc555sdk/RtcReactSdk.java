@@ -1,4 +1,4 @@
-package com.rtcreactsdk;
+package com.comcast.rtc555sdk;
 
 import android.app.Application;
 import android.os.Handler;

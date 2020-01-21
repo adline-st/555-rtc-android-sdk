@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
-
+apply from: 'bintray.gradle'
+apply from: 'install.gradle'
 
 version = "0.0.1"
 
@@ -10,6 +11,8 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+
 
     defaultConfig {
         minSdkVersion 23

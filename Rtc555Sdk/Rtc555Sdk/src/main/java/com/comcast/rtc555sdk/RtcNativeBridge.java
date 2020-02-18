@@ -47,9 +47,9 @@ public class RtcNativeBridge extends ReactContextBaseJavaModule{
     }
 
     @ReactMethod
-    void onRtcSessionError(@NonNull ReadableMap errorInfo) {
+    void onRtcSessionError(@NonNull ReadableMap errorInfo,String traceid) {
         HashMap errorInfoMap =  ConversionUtil.toMap(errorInfo);
-        observer.onRtcNativeEventSessionError(errorInfoMap);
+        observer.onRtcNativeEventSessionError(errorInfoMap, traceid);
     }
 
     @ReactMethod
@@ -58,13 +58,41 @@ public class RtcNativeBridge extends ReactContextBaseJavaModule{
        observer.onRtcNativeEventNotification(notificationData);
     }
 
+    @ReactMethod
+    void onCallResponse(@NonNull String response){
+        observer.onRtcNativeEventCallSuccess(response);
+    }
+
+    @ReactMethod
+    void onCallFailed(@NonNull ReadableMap errorInfo){
+        HashMap errorInfoMap =  ConversionUtil.toMap(errorInfo);
+        observer.onRtcNativeEventCallFailed(errorInfoMap);
+    }
+
+    @ReactMethod
+    void onRejectSuccess(@NonNull String callId){
+        observer.onRtcNativeEventCallSuccess(callId);
+    }
+    @ReactMethod
+    void onRejectFailed(@NonNull ReadableMap errorInfo){
+        HashMap errorInfoMap =  ConversionUtil.toMap(errorInfo);
+        observer.onRtcNativeEventCallFailed(errorInfoMap);
+    }
+
+    @ReactMethod
+    void onCallMerged(@NonNull String callId){
+        observer.onRtcNativeEventCallMergeSuccess(callId);
+    }
 
     public interface RtcNativeEventObserver{
         void onRtcNativeEventConnectionStateChange(String connectionState);
         void onRtcNativeEventConnectionError(HashMap errorInfo);
         void onRtcNativeEventSessionStatus(String sessionStatus, String callId);
-        void onRtcNativeEventSessionError(HashMap errorInfo);
+        void onRtcNativeEventSessionError(HashMap errorInfo, String callId);
         void onRtcNativeEventNotification(HashMap notfyData);
+        void onRtcNativeEventCallSuccess(String response);
+        void onRtcNativeEventCallFailed(HashMap errorInfo);
+        void onRtcNativeEventCallMergeSuccess(String callId);
     }
 
 }

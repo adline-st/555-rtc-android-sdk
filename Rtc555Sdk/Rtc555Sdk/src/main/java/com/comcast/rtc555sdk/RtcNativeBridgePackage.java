@@ -4,7 +4,7 @@ import com.facebook.react.ReactPackage;
 import com.facebook.react.bridge.NativeModule;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.uimanager.ViewManager;
-
+import com.comcast.rtc555sdk.RtcNativeBridge.RtcNativeEventObserver;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -13,9 +13,9 @@ import javax.annotation.Nonnull;
 
 public class RtcNativeBridgePackage implements ReactPackage {
 
-    private RtcNativeBridge.RtcNativeEventObserver observer;
+    private RtcNativeEventObserver observer;
 
-    public RtcNativeBridgePackage(RtcNativeBridge.RtcNativeEventObserver observer){
+    public RtcNativeBridgePackage(RtcNativeEventObserver observer){
         this.observer = observer;
     }
 

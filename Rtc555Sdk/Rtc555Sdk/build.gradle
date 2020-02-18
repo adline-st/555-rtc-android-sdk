@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 apply from: 'bintray.gradle'
 apply from: 'install.gradle'
 
-version = "0.0.1"
+version = "0.0.3"
 
 android {
     compileSdkVersion 29
@@ -79,10 +79,19 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp-urlconnection:3.12.1'
     implementation project(path: ':android-jsc-intl-r245459')
     implementation project(path: ':react-native-0.59.9')
-
+    api 'io.reactivex.rxjava2:rxandroid:2.0.1'
 }
 
 task copyDownloadableDepsToLibs(type: Copy) {
     from configurations.compile
     into 'libs'
 }
+
+task createFatAar(type: Exec, dependsOn: build) {
+    println("Harish::Inside task::packDex")
+    workingDir '../'
+    commandLine 'sh', './CombinedJar.sh'
+
+
+}
+
